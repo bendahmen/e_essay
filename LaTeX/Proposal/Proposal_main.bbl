@@ -1,0 +1,454 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global}
+    \entry{StatistaWebsite}{misc}{}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{url}
+      \field{labeltitlesource}{title}
+      \field{title}{{Bev{ö}lkerung nach relevanten Altersgruppen 2019 | Statista}}
+      \field{urlday}{10}
+      \field{urlmonth}{12}
+      \field{urlyear}{2020}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://de.statista.com/statistik/daten/studie/1365/umfrage/bevoelkerung-deutschlands-nach-altersgruppen/
+      \endverb
+      \verb{url}
+      \verb https://de.statista.com/statistik/daten/studie/1365/umfrage/bevoelkerung-deutschlands-nach-altersgruppen/
+      \endverb
+    \endentry
+    \entry{CardMW1992}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a9e88233ec6ce30d2d31e294961e3e76}{%
+           family={Card},
+           familyi={C\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a9e88233ec6ce30d2d31e294961e3e76}
+      \strng{fullhash}{a9e88233ec6ce30d2d31e294961e3e76}
+      \strng{bibnamehash}{a9e88233ec6ce30d2d31e294961e3e76}
+      \strng{authorbibnamehash}{a9e88233ec6ce30d2d31e294961e3e76}
+      \strng{authornamehash}{a9e88233ec6ce30d2d31e294961e3e76}
+      \strng{authorfullhash}{a9e88233ec6ce30d2d31e294961e3e76}
+      \field{extraname}{1}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In July 1988, California's minimum wage rose from {\$}3.35 to {\$}4.25. During the previous year, 11{\%} of workers in the state and 50{\%} of California teenagers had earned less than the new state minimum. Using published data and samples from the Current Population Survey, the author compares changes in the labor market outcomes of California workers to the corresponding changes in a group of states with no increase in the minimum wage. The minimum wage increase raised the earnings of low-wage workers by 5-10{\%}. Contrary to conventional predictions, however, there was no decline in teenage employment, or any relative loss of jobs in retail trade. (Abstract courtesy JSTOR.)}
+      \field{issn}{00197939}
+      \field{journaltitle}{Industrial and Labor Relations Review}
+      \field{title}{{Do Minimum Wages Reduce Employment? A Case Study of California, 1987-89}}
+      \field{year}{1992}
+      \verb{doi}
+      \verb 10.2307/2524737
+      \endverb
+    \endentry
+    \entry{CardMWVariation1992}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a9e88233ec6ce30d2d31e294961e3e76}{%
+           family={Card},
+           familyi={C\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a9e88233ec6ce30d2d31e294961e3e76}
+      \strng{fullhash}{a9e88233ec6ce30d2d31e294961e3e76}
+      \strng{bibnamehash}{a9e88233ec6ce30d2d31e294961e3e76}
+      \strng{authorbibnamehash}{a9e88233ec6ce30d2d31e294961e3e76}
+      \strng{authornamehash}{a9e88233ec6ce30d2d31e294961e3e76}
+      \strng{authorfullhash}{a9e88233ec6ce30d2d31e294961e3e76}
+      \field{extraname}{2}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The imposition of a national minimum wage standard provides a natural experiment in which the “treatment effect” varies across states depending on the fraction of workers initially earning less than the new minimum. The author exploits this fact to evaluate the effect of the April 1990 increase in the federal minimum wage on teenagers' wages, employment, and school enrollment. Comparisons of grouped and individual state data confirm that the rise in the minimum wage increased teenagers' wages. There is no evidence of corresponding losses in teenage employment or changes in teenage school enrollment.}
+      \field{issn}{0019-7939}
+      \field{journaltitle}{ILR Review}
+      \field{title}{{Using Regional Variation in Wages to Measure the Effects of the Federal Minimum Wage}}
+      \field{year}{1992}
+      \verb{doi}
+      \verb 10.1177/001979399204600103
+      \endverb
+    \endentry
+    \entry{CardKruegerMWBook2015}{book}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=a9e88233ec6ce30d2d31e294961e3e76}{%
+           family={Card},
+           familyi={C\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=34526c3bf548080921683822747fad7e}{%
+           family={Krueger},
+           familyi={K\bibinitperiod},
+           given={Alan\bibnamedelima B.},
+           giveni={A\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{88d00363e1018b78cd4ea4a59ccee815}
+      \strng{fullhash}{88d00363e1018b78cd4ea4a59ccee815}
+      \strng{bibnamehash}{88d00363e1018b78cd4ea4a59ccee815}
+      \strng{authorbibnamehash}{88d00363e1018b78cd4ea4a59ccee815}
+      \strng{authornamehash}{88d00363e1018b78cd4ea4a59ccee815}
+      \strng{authorfullhash}{88d00363e1018b78cd4ea4a59ccee815}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{David Card and Alan B. Krueger have already made national news with their pathbreaking research on the minimum wage. Here they present a powerful new challenge to the conventional view that higher minimum wages reduce jobs for low-wage workers. In a work that has important implications for public policy as well as for the direction of economic research, the authors put standard economic theory to the test, using data from a series of recent episodes, including the 1992 increase in New Jersey's minimum wage, the 1988 rise in California's minimum wage, and the 1990-91 increases in the federal minimum wage. In each case they present a battery of evidence showing that increases in the minimum wage lead to increases in pay, but no loss in jobs. A distinctive feature of Card and Krueger's research is the use of empirical methods borrowed from the natural sciences, including comparisons between the "treatment" and "control" groups formed when the minimum wage rises for some workers but not for others. In addition, the authors critically reexamine the previous literature on the minimum wage and find that it, too, lacks support for the claim that a higher minimum wage cuts jobs. Finally, the effects of the minimum wage on family earnings, poverty outcomes, and the stock market valuation of low-wage employers are documented. Overall, this book calls into question the standard model of the labor market that has dominated economists' thinking on the minimum wage. In addition, it will shift the terms of the debate on the minimum wage in Washington and in state legislatures throughout the country.}
+      \field{booktitle}{Myth and Measurement: The New Economics of the Minimum Wage}
+      \field{isbn}{9781400880874}
+      \field{issn}{00130133}
+      \field{title}{{Myth and Measurement: The New Economics of the Minimum Wage}}
+      \field{year}{2015}
+      \verb{doi}
+      \verb 10.2307/2234949
+      \endverb
+    \endentry
+    \entry{DIWWebsite}{misc}{}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{url}
+      \field{labeltitlesource}{title}
+      \field{title}{{DIW Berlin: Data}}
+      \field{urlday}{10}
+      \field{urlmonth}{12}
+      \field{urlyear}{2020}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.diw.de/en/diw{\_}02.c.222516.en/data.html
+      \endverb
+      \verb{url}
+      \verb https://www.diw.de/en/diw%7B%5C_%7D02.c.222516.en/data.html
+      \endverb
+    \endentry
+    \entry{JardimMWSeattle2017}{article}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=cda1d659582fda5fc55e30d376849410}{%
+           family={Jardim},
+           familyi={J\bibinitperiod},
+           given={Ekaterina},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=512b5f128f7fa5ecae2d13df724c4792}{%
+           family={Long},
+           familyi={L\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=02637266948caed62a7f024c3ee37edc}{%
+           family={Plotnick},
+           familyi={P\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=66f4b5d8888c01a5073a93a74273ac80}{%
+           family={Inwegen},
+           familyi={I\bibinitperiod},
+           given={Emma},
+           giveni={E\bibinitperiod},
+           givenun=0,
+           prefix={van},
+           prefixi={v\bibinitperiod},
+           prefixun=0}}%
+        {{un=0,uniquepart=base,hash=0c8bc4a55d5efa77eb7e43f42f827ed9}{%
+           family={Vigdor},
+           familyi={V\bibinitperiod},
+           given={Jacob},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3dea0536a67fbe7b269924e33c338f91}{%
+           family={Wething},
+           familyi={W\bibinitperiod},
+           given={Hilary},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{880eb9e81f8a404779fe6a8c46b17f67}
+      \strng{fullhash}{270d0e12b1887cbbdb053f59c30e5702}
+      \strng{bibnamehash}{880eb9e81f8a404779fe6a8c46b17f67}
+      \strng{authorbibnamehash}{880eb9e81f8a404779fe6a8c46b17f67}
+      \strng{authornamehash}{880eb9e81f8a404779fe6a8c46b17f67}
+      \strng{authorfullhash}{270d0e12b1887cbbdb053f59c30e5702}
+      \field{sortinit}{J}
+      \field{sortinithash}{c45040a764d616897e7f5b30174d7b92}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper evaluates the wage, employment, and hours effects of the first and second phase-in of the Seattle Minimum Wage Ordinance, which raised the minimum wage from {\$}9.47 to as much as {\$}11 in 2015 and to as much as {\$}13 in 2016. Using a variety of methods to analyze employment in all sectors paying below a specified real hourly wage rate, we conclude that the second wage increase to {\$}13 reduced hours worked in low-wage jobs by 6-7 percent, while hourly wages in such jobs increased by 3 percent. Consequently, total payroll for such jobs decreased, implying that the Ordinance lowered the amount paid to workers in low-wage jobs by an average of {\$}74 per month per job in 2016. Evidence attributes more modest effects to the first wage increase. We estimate an effect of zero when analyzing employment in the restaurant industry at all wage levels, comparable to many prior studies.}
+      \field{issn}{0898-2937}
+      \field{journaltitle}{National Bureau of Economic Research}
+      \field{title}{{Minimum Wage Increases, Wages, and Low-Wage Employment: Evidence from Seattle}}
+      \field{year}{2017}
+      \verb{doi}
+      \verb 10.3386/w23532
+      \endverb
+    \endentry
+    \entry{KabatekBirthday2020}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=84e7be5a55bd7f32574a062ee73be2c7}{%
+           family={Kab{á}tek},
+           familyi={K\bibinitperiod},
+           given={Jan},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{84e7be5a55bd7f32574a062ee73be2c7}
+      \strng{fullhash}{84e7be5a55bd7f32574a062ee73be2c7}
+      \strng{bibnamehash}{84e7be5a55bd7f32574a062ee73be2c7}
+      \strng{authorbibnamehash}{84e7be5a55bd7f32574a062ee73be2c7}
+      \strng{authornamehash}{84e7be5a55bd7f32574a062ee73be2c7}
+      \strng{authorfullhash}{84e7be5a55bd7f32574a062ee73be2c7}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The Dutch minimum wage for workers aged 15 to 23 is defined as a stepwise increasing function of a worker's calendar age. Using Dutch administrative records, the author shows that the birthday discontinuities of age-dependent minimum wage rates affect both labor market entry (job accessions) and labor market exit (job separations) of minimum wage workers. The job separations spike in the three months that precede workers' birthdays, suggesting that firms are dismissing workers whose costs are about to go up. The frequency of job accessions increases immediately after the birthdays and the increase is sustained throughout the following months. The resulting effect on employment levels is dynamic, with the employment rate being subject to an initial drop that is gradually compensated for by the higher rates of post-birthday labor market entry.}
+      \field{issn}{2162271X}
+      \field{journaltitle}{ILR Review}
+      \field{title}{{Happy Birthday, You're Fired! Effects of an Age-Dependent Minimum Wage on Youth Employment Flows in the Netherlands}}
+      \field{year}{2020}
+      \verb{doi}
+      \verb 10.1177/0019793919897914
+      \endverb
+      \keyw{age dependency,churning,labor market flows,minimum wage,youth workers}
+    \endentry
+    \entry{LISSWebsite}{misc}{}
+      \field{sortinit}{L}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{url}
+      \field{labeltitlesource}{title}
+      \field{title}{{LISS Panel Data}}
+      \field{urlday}{10}
+      \field{urlmonth}{12}
+      \field{urlyear}{2020}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.lissdata.nl/
+      \endverb
+      \verb{url}
+      \verb https://www.lissdata.nl/
+      \endverb
+    \endentry
+    \entry{NeumarkWascherMW1992}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=17b0d070068575315bd7fa38f68880e8}{%
+           family={Neumark},
+           familyi={N\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d2cd8b10133c3539c0fec8f2ce3867db}{%
+           family={Wascher},
+           familyi={W\bibinitperiod},
+           given={William},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{4bc2f70ace646cdca216591da6c7e22d}
+      \strng{fullhash}{4bc2f70ace646cdca216591da6c7e22d}
+      \strng{bibnamehash}{4bc2f70ace646cdca216591da6c7e22d}
+      \strng{authorbibnamehash}{4bc2f70ace646cdca216591da6c7e22d}
+      \strng{authornamehash}{4bc2f70ace646cdca216591da6c7e22d}
+      \strng{authorfullhash}{4bc2f70ace646cdca216591da6c7e22d}
+      \field{extraname}{1}
+      \field{sortinit}{N}
+      \field{sortinithash}{98cf339a479c0454fe09153a08675a15}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We construct a panel data set on state-level minimum wage laws and economic conditions to reevaluate existing evidence on minimum wage effects on employment, most of which comes from time-series data. Our estimates of the elasticities of teen and young-adult employment-to-population ratios fall primarily in the range -0.1 to -0.2, similar to the consensus range of estimates from time-series studies. We also find evidence that youth subminimum wage provisions enacted by state legislatures have moderated the disemployment effects of minimum wages.}
+      \field{issn}{00197939}
+      \field{journaltitle}{Industrial and Labor Relations Review}
+      \field{title}{{Employment Effects of Minimum and Subminimum Wages: Panel Data on State Minimum Wage Laws}}
+      \field{year}{1992}
+      \verb{doi}
+      \verb 10.2307/2524738
+      \endverb
+    \endentry
+    \entry{NeumarkWascherMW2001}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=17b0d070068575315bd7fa38f68880e8}{%
+           family={Neumark},
+           familyi={N\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d2cd8b10133c3539c0fec8f2ce3867db}{%
+           family={Wascher},
+           familyi={W\bibinitperiod},
+           given={William},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{4bc2f70ace646cdca216591da6c7e22d}
+      \strng{fullhash}{4bc2f70ace646cdca216591da6c7e22d}
+      \strng{bibnamehash}{4bc2f70ace646cdca216591da6c7e22d}
+      \strng{authorbibnamehash}{4bc2f70ace646cdca216591da6c7e22d}
+      \strng{authornamehash}{4bc2f70ace646cdca216591da6c7e22d}
+      \strng{authorfullhash}{4bc2f70ace646cdca216591da6c7e22d}
+      \field{extraname}{2}
+      \field{sortinit}{N}
+      \field{sortinithash}{98cf339a479c0454fe09153a08675a15}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Theory predicts that minimum wages will reduce employer-provided on-the-job training designed to improve workers' skills on the current job, but it is ambiguous regarding training that workers obtain to qualify for a job. We estimate the effects of minimum wages on both types of training received by young workers, exploiting cross-state variation in minimum wage increases. Much of the evidence supports the hypothesis that higher minimum wages reduce formal training to improve skills on the current job. But there is little or no evidence of offsetting increases in training undertaken to qualify for or obtain jobs.}
+      \field{issn}{0734306X}
+      \field{journaltitle}{Journal of Labor Economics}
+      \field{title}{{Minimum wages and training revisited}}
+      \field{year}{2001}
+      \verb{doi}
+      \verb 10.1086/322073
+      \endverb
+    \endentry
+    \entry{PereiraMWPortugal2003}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=bfff3dd04bbc881abc175a3c07bef5cd}{%
+           family={Pereira},
+           familyi={P\bibinitperiod},
+           given={Sonia\bibnamedelima C.},
+           giveni={S\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{bfff3dd04bbc881abc175a3c07bef5cd}
+      \strng{fullhash}{bfff3dd04bbc881abc175a3c07bef5cd}
+      \strng{bibnamehash}{bfff3dd04bbc881abc175a3c07bef5cd}
+      \strng{authorbibnamehash}{bfff3dd04bbc881abc175a3c07bef5cd}
+      \strng{authornamehash}{bfff3dd04bbc881abc175a3c07bef5cd}
+      \strng{authorfullhash}{bfff3dd04bbc881abc175a3c07bef5cd}
+      \field{sortinit}{P}
+      \field{sortinithash}{bb5b15f2db90f7aef79bb9e83defefcb}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{On January 1, 1987, the legal minimum wage for workers aged 18 and 19 in Portugal was raised by 49.3{\%}. This shock is used as a "natural experiment" to evaluate the impact of the minimum wage change on teenagers' employment. The method is to compare, based on firm-level microdata, the employment growth of 18-19-year-old workers with employment growth of older workers. The main findings are that the increase in the minimum wage significantly reduced employment of 18 and 19 year olds, but increased employment of 20-25 year olds. © 2002 Elsevier Science B.V. All rights reserved.}
+      \field{issn}{00142921}
+      \field{journaltitle}{European Economic Review}
+      \field{title}{{The impact of minimum wages on youth employment in Portugal}}
+      \field{year}{2003}
+      \verb{doi}
+      \verb 10.1016/S0014-2921(02)00209-X
+      \endverb
+      \keyw{Minimum wages,Natural experiment,Youth employment}
+    \endentry
+    \entry{StrainMW2017}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=4f44770e07ad143b91b94bbe880b0c33}{%
+           family={Strain},
+           familyi={S\bibinitperiod},
+           given={Michael\bibnamedelima R},
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b3fb95c1dd2e407afc01cf9068f7705d}{%
+           family={Clemens},
+           familyi={C\bibinitperiod},
+           given={Jeffrey},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{aab4a4d960fa131ba4a782e950bae03a}
+      \strng{fullhash}{aab4a4d960fa131ba4a782e950bae03a}
+      \strng{bibnamehash}{aab4a4d960fa131ba4a782e950bae03a}
+      \strng{authorbibnamehash}{aab4a4d960fa131ba4a782e950bae03a}
+      \strng{authornamehash}{aab4a4d960fa131ba4a782e950bae03a}
+      \strng{authorfullhash}{aab4a4d960fa131ba4a782e950bae03a}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper presents early evidence on the employment effects of state minimum wage increases enacted between January 2013 and January 2015, and offers an interpretative framework to understand why it is of interest to study recent changes in isolation. Given the ongoing transitions of many states' minimum wage rates, we also set the stage for a pre-committed analysis of the minimum wage changes scheduled for coming years. Through 2015, we estimate that employment among young adults and young individuals with less than a completed high school education expanded modestly less quickly in states that enacted one-time or multi-phase statutory minimum wage increases than in states that enacted no minimum wage increases. Across the specifications we implement and the samples we analyze, many of our estimates are statistically indistinguishable from zero. Data on the longer-run effects of this period's minimum wage changes will be essential for more fully assessing these changes' effects and for drawing strong conclusions regarding how minimum wage increases affect employment in this decade's institutional and economic environment. As data become available for the full 2016 through 2019 calendar years, we will execute and report the results of analyses that follow the road map this paper develops. Jeffrey}
+      \field{journaltitle}{American Enterprise Institute Working Paper}
+      \field{title}{{Estimating the Employment Effects of Recent Minimum Wage Changes: Early Evidence, an Interpretative Framework, and a Pre-Commitment to Future Analysis}}
+      \field{year}{2017}
+      \keyw{CPS,MORG,Merged Outgoing Rotation Group,current population survey,employment,labor market,minimum wage,schooling,state minimum wage,wages}
+    \endentry
+    \entry{KreinerReckMW2020}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=4442aa2a9971c0f9ade189edc23edf3b}{%
+           family={{Thustrup Kreiner}},
+           familyi={T\bibinitperiod},
+           given={Claus},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=456f290a63ed20cca7d0dc1a95033a02}{%
+           family={Reck},
+           familyi={R\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fb996bbee83e3ad334163cb365a39625}{%
+           family={{Ebbesen Skov}},
+           familyi={E\bibinitperiod},
+           given={Peer},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{6163eaf57dbc1a998335a4985edcded4}
+      \strng{fullhash}{6163eaf57dbc1a998335a4985edcded4}
+      \strng{bibnamehash}{6163eaf57dbc1a998335a4985edcded4}
+      \strng{authorbibnamehash}{6163eaf57dbc1a998335a4985edcded4}
+      \strng{authornamehash}{6163eaf57dbc1a998335a4985edcded4}
+      \strng{authorfullhash}{6163eaf57dbc1a998335a4985edcded4}
+      \field{sortinit}{T}
+      \field{sortinithash}{51f9faf24c60c62ca764a77f78cf5666}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We estimate the impact of youth minimum wages on youth employment by exploiting a large discontinuity in Danish minimum wage rules at age 18, using monthly payroll records for the Danish population. The hourly wage jumps by 40{\%} at the discontinuity. Employment falls by 33{\%}, and total input of hours decreases by 45{\%}, leaving the aggregate wage payment almost unchanged. We show theoretically how the discontinuity may be exploited to evaluate policy changes. The relevant elasticity for evaluating the effect on youth employment of changes in their minimum wage is in the range 0.6 to 1.1.}
+      \field{issn}{15309142}
+      \field{journaltitle}{Review of Economics and Statistics}
+      \field{title}{{Do lower minimumwages for young workers raise their employment? Evidence from a danish discontinuity}}
+      \field{year}{2020}
+      \verb{doi}
+      \verb 10.1162/rest_a_00825
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

@@ -1,0 +1,19 @@
+[0] Config.pm:304> INFO - This is Biber 2.14
+[1] Config.pm:307> INFO - Logfile is 'Proposal_main.blg'
+[120] biber-MSWIN64:322> INFO - === 
+[151] Biber.pm:415> INFO - Reading 'Proposal_main.bcf'
+[337] Biber.pm:943> INFO - Found 9 citekeys in bib section 0
+[369] Biber.pm:4256> INFO - Processing section 0
+[369] Utils.pm:75> INFO - Globbing data source '"../Extended_Essay_LSE.bib"'
+[384] Utils.pm:91> INFO - Globbed data source '"../Extended_Essay_LSE.bib"' to ../Extended_Essay_LSE.bib
+[411] Biber.pm:4455> INFO - Looking for bibtex format file '../Extended_Essay_LSE.bib' for section 0
+[442] bibtex.pm:1653> INFO - LaTeX decoding ...
+[537] bibtex.pm:1471> INFO - Found BibTeX data source '../Extended_Essay_LSE.bib'
+[741] Utils.pm:304> WARN - BibTeX subsystem: C:\Users\benda\AppData\Local\Temp\biber_tmp_NQST\Extended_Essay_LSE.bib_8244.utf8, line 6, warning: 172 characters of junk seen at toplevel
+[800] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[800] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[800] Biber.pm:4084> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[800] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
+[821] bbl.pm:652> INFO - Writing 'Proposal_main.bbl' with encoding 'UTF-8'
+[832] bbl.pm:755> INFO - Output to Proposal_main.bbl
+[845] Biber.pm:128> INFO - WARNINGS: 1

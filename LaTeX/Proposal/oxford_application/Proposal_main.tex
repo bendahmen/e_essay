@@ -1,0 +1,45 @@
+\documentclass[11pt]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage[margin=8em]{geometry}
+\usepackage[style=authoryear]{biblatex}
+\addbibresource{"../Extended_Essay_LSE.bib"}
+
+\title{Research Proposal}
+\subtitle{DPhil in Economics, Oxford}
+\author{Benjamin Alessandro Dahmen}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+	\maketitle
+	
+\section{Introduction}
+One of the main objectives of governments is to create well functioning labor markets that both guarantee a high level of employment and at the same time ensure fair working conditions for all participants. A very common tool that focuses especially on the latter objective is the minimum wage. However, the academic debate regarding the exact employment effects of minimum wages [MW] is still very active and ambivalent. While a large part of the literature suggests that the overall employment effects of MW are at worst moderate, there is also some evidence suggesting otherwise. A particularly interesting issue is the effect on employment of young workers. In many countries the MW regulations include special rules and exemptions for workers below certain ages. This is often justified by the notion that young workers face a very elastic labor demand and therefore would be hurt by a MW. Given these circumstances, the effect on young workers is an especially relevant topic to be investigated. \\ \\
+In my research I would like to look at this effect in the context of the introduction of the German MW law ("Mindestlohngesetz") in 2015. The law was meant to unify the dispersed wage floor structure prior to that date. Before 2015 most wage floors were set by collective bargaining agreements from different unions. Each of these would cover individuals employed in different sectors, while many sectors remained entirely without a wage floor. With the new law, the German government put emphasis on ensuring that the MW holds strictly for any individual who is at least 18 years old. This results in a very strong discontinuous age cut-off in the MW that needs to be payed to young workers. In my analysis I want to compare individuals above and below this cut-off with respect to their likelihood of being employed.
+
+\section{Previous Literature}
+There exists a very broad literature around the employment impacts of MW and a lot of studies pay attention to young or low-wage workers specifically. Most empirical evidence in the late 90s and early 2000s has come from Card as well as Neumark and Wascher. Their studies use panel data to exploit variation in US state MW levels. Many of their studies - including Card and Krueger's seminal \citeyear{CardKrueger1994} paper - are not able to confirm the widely accepted theoretic result that MWs reduce employment (\cite{CardMWVariation1992}, \cite{CardMW1992}, \cite{NeumarkWascherMW1992}). \textcite{PereiraMWPortugal2003} generally confirms earlier results but also finds some substitution towards older workers. \\
+
+Some subsequent analyses have estimated more diverse results. \textcite{StrainMW2017} conduct a preliminary analysis of US MW increases in the post-financial crisis era. Contrary to much of the previously presented literature, they find that MW increases slow down the growth of employment rates, particularly for young workers. Next to that they report that actively decided increases have stronger effects than automatic inflation-indexed increases. Jardim et al. (\citeyear{JardimMWSeattle2017}) look at a context in which Seattle increased its MW twice in the span of a few years. They find no effects of the MW raise to 11\$ but significant disemployment effects for the subsequent raise to 13\$. Looking more closely at the labor market responses it also seems that intensive margin changes could be more important than changes on the extensive margin, especially when much of the low-wage work is of part-time nature. \\
+
+Lastly, I mention two recent papers that look specifically at age dependent cutoffs for young workers. \textcite{KabatekBirthday2020} looks at the particular setup of the Dutch MW for young workers that uses a step-wise increase in MW from age 16 to 23. Kabatek finds that shortly after an individual's birthday they are more likely to experience a job separation. However, in the medium term, he also finds that following a birthday there is an increased chance of a new job creation. This could imply that also the supply adapts to the MW and young workers wait to be eligible for a higher wage before applying to a job. In another paper Kreiner et al. (\citeyear{KreinerReckMW2020}) look at the MW setting in Denmark where the full MW applies to anyone turning 18 but not at all before that. The authors apply a regression discontinuity [RD] design to this very abrupt cutoff and compare individuals slightly before and after their 18\textsuperscript{th} birthdays. They find an elasticity of -1 which implies relatively strong disemployment effects and no effects on overall wage income. Furthermore, they see that loosing one's job at 18 has strong long-term effects as such individuals are much less likely to have a job two years later than individuals who did not lose their job at 18. Contrary to Jardim et al. (\citeyear{JardimMWSeattle2017}) this study finds that most disemployment is concentrated along the extensive rather than intensive margin. \\
+
+\subsection*{My contribution}
+I plan to contribute to this rather extensive literature by specifically looking at cutoffs for very young workers, as this topic has not been studied as extensively yet. The main reference for this approach is the above mentioned Kreiner et al. (\citeyear{KreinerReckMW2020}) paper. Although their research design is convincing in many aspects, some doubts can be raised regarding the smooth development of other variables influencing employment around the 18 year age cutoff. I want to address this problem by comparing the employment change before and after the implementation of the MW law. This helps me to control for changes to employment at age 18 that happen even in the absence of a MW. Moreover, I will also add to the literature looking at the German minimum wage law specifically. Given how recently the law was implemented, its effects have so far been analyzed by a few papers only. These papers mostly focus on the effects on employees working in industries with a high share of low-wage jobs, which means that I will analyze the law from a novel perspective.
+
+\section{Data and Preliminary Empirical Strategy}
+A dataset that could be possibly used for this analysis is the "Mikrozensus" from the German statistical agency Destatis. It is a yearly survey featuring more than $800.000$ individuals and includes various questions on work-related measures as well as income. \\
+
+I plan to use an empirical analysis similar to Kreiner et al. (\citeyear{KreinerReckMW2020}). Effectively, I will exploit the abrupt discontinuity in the German MW at age 18 in a RD design of the form
+$$ \text{Y} = \text{y}(\text{E, z}, \epsilon) $$
+where $\text{Y}$ is an outcome variable (hours worked/probability of being employed), $\text{E}$ is a deterministic function of age $\text{z}$ that indicates whether an individual is eligible for the MW and $ \epsilon $ denotes unobserved heterogeneity. \\
+While this discontinuity provides a great context to observe employment effects, it also raises some doubts about the identifying assumptions of a RD as arguably there may be many unobserved differences between employees before and after their 18\textsuperscript{th} birthday. Therefore, I will extend Kreiner's methodology and use data from cohorts that were around the age threshold prior to 2015 as a control group, as then, the MW law hadn't come into effect yet. In principle, I will embed my RD estimates into a DID design where cohorts that turn 18 after 2015 are the treatment group and earlier cohorts the control group. This will ensure that the effects my analysis picks up are not mainly attributable to differences before and after turning 18. \\ \\ 
+
+Word count: 1484 (including bibliography)
+
+
+
+\printbibliography
+
+\end{document}
