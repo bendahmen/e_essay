@@ -8,7 +8,7 @@
 #PACKAGES
 installation_needed  <- F
 loading_needed <- T
-package_list <- c('haven', "tidyr", "dplyr", "naniar")
+package_list <- c('haven', "tidyr", "dplyr")
 if(installation_needed){install.packages(package_list, repos='http://cran.us.r-project.org')}
 if(loading_needed){lapply(package_list, require, character.only = T)}
 
@@ -20,7 +20,7 @@ rm(list=ls())
 p_tracking_data <- read_dta("../Data/SOEP/cs-transfer/soep.v35.international.stata_dta/ppathl.dta")
 #keep relevant vars from individual tracking data
 p_tracking_data_vars <- c("pid", "syear", "sex", "gebjahr", "todjahr",
-                          "germborn", "corigin", "gebmonat", "migback", "phrf", "piyear")
+                          "germborn", "corigin", "gebmonat", "migback", "phrf")
 p_tracking_data <- p_tracking_data %>%
   select(all_of(p_tracking_data_vars))
 
@@ -28,10 +28,10 @@ p_tracking_data <- p_tracking_data %>%
 p_bio_data <- read_dta("../Data/SOEP/cs-transfer/soep.v35.international.stata_dta/pgen.dta")
 #keep relevant vars from individual generated biographical data
 p_bio_data_vars <- c("pid", "syear", "pgnation", "pglabgro", "pgimpgro", "pglabnet", 
-                     "pgsndjob", "pgimpsnd", "pgstib", "pgemplst", "pgjobch", 
+                     "pgsndjob", "pgimpsnd", "pgstib", "pgemplst", "pglfs", "pgjobch", 
                      "pgerwzeit", "pgtatzeit", "pgvebzeit", "pguebstd", "pgbetr", 
                      "pgallbet", "pgbilzeit", "pgpsbil", "pgpbbil01", "pgpbbil02", 
-                     "pgpbbil03", "pgsndjob2", "pgsndjob3", "pgmonth", "pgpiyear")
+                     "pgpbbil03", "pgmonth")
 p_bio_data <- p_bio_data %>%
   select(all_of(p_bio_data_vars))
 
@@ -46,9 +46,9 @@ assembled_data <- p_tracking_data %>%
   left_join(p_bio_data, by = c("pid", "syear")) %>%
   left_join(p_ext_income_data, by = c("pid", "syear"))
 
-#generate age, if month vars missing generate approx age; could extend to drop 17/18 year olds with approx age
+#generate age last month, if month vars missing generate approx age; could extend to drop 17/18 year olds with approx age
 assembled_data <- assembled_data %>%
-  mutate(age = ifelse(gebmonat > 0 & pgmonth > 0, ifelse(gebmonat <= pgmonth, (syear - gebjahr), (syear - gebjahr - 1)),syear - gebjahr))
+  mutate(age = ifelse(gebmonat > 0 & pgmonth > 0, ifelse(gebmonat < pgmonth, (syear - gebjahr), (syear - gebjahr - 1)),syear - gebjahr))
   
 #save assembled data
 save(assembled_data, file="../Data/SOEP/gen/assembled_data.Rda")
