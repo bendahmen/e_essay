@@ -54,8 +54,8 @@ assembled_data <- assembled_data %>%
 save(assembled_data, file="../Data/SOEP/gen/assembled_data.Rda")
 
 #create young people sample
-sample_16_20_data <- assembled_data %>%
-  filter(age < 21 & age > 15)
+sample_young_data <- assembled_data %>%
+  filter(age < 24 & age > 13)
 
 #save sample
-save(sample_16_20_data, file="../Data/SOEP/gen/sample_16_20_data.Rda")
+save(sample_young_data, file="../Data/SOEP/gen/sample_young_data.Rda")
