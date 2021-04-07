@@ -1,6 +1,6 @@
 #EXTENDED ESSAY LSE
 #Author: Benjamin Dahmen
-#rdd_plot.R
+#rdd_reg.R
 
 #The aim of this script is to obtain RDD estimates for the data
 
@@ -9,7 +9,7 @@
 #PACKAGES
 installation_needed  <- F
 loading_needed <- T
-package_list <- c("haven", "tidyverse", "rdrobust", "rdd", "plm")
+package_list <- c("haven", "tidyverse", "rdrobust", "rdd", "plm", "stargazer")
 if(installation_needed){install.packages(package_list, repos='http://cran.us.r-project.org')}
 if(loading_needed){lapply(package_list, require, character.only = T)}
 
@@ -18,10 +18,10 @@ rm(list=ls())
 #SET WD in console
 
 #load data
-load(file = "../Data/SOEP/gen/csample_young_data.Rda")
+load(file = "../Data/SOEP/gen/rdd_data.Rda")
 
 #filter data
-treatment_sample <- filter(csample_young_data, year_group == "2015+ Treatment")
+treatment_sample <- filter(rdd_data, year_group == "2015+ Treatment")
 attach(treatment_sample)
 
 #covariates
@@ -32,7 +32,7 @@ covariates <- c("migback", "pgbilzeit", "pgpsbil")
 #F-test for optimal specification workforce
 linear_spec <- lm(workforce ~ adult_dummy + dist_x_adult + month_distance, weights=phrf)
 linear_spec_ind <- lm(workforce ~ adult_dummy + dist_x_adult + month_distance + as.factor(month_distance_bins), weights = phrf)
-linear_spec_anova <- anova(linear_spec, linear_spec_in)[2,c(5,6)]
+linear_spec_anova <- anova(linear_spec, linear_spec_ind)[2,c(5,6)]
 
 quadratic_spec <- lm(workforce ~ adult_dummy + dist_x_adult + month_distance + month_distance_sq + dist_sq_x_adult, weights=phrf)
 quadratic_spec_ind <- lm(workforce ~ adult_dummy + dist_x_adult + month_distance + as.factor(month_distance_bins) + month_distance_sq + dist_sq_x_adult, weights = phrf)
@@ -65,7 +65,7 @@ trimmed_sample <-treatment_sample %>%
 attach(trimmed_sample)
 linear_interaction_rdd_no5 <- lapply(X = list("workforce", "unemployed", "hrl_wage"), FUN = function(outcome) {
     f <- reformulate(c("month_distance", "adult_dummy", "dist_x_adult", "month_distance_sq", "dist_sq_x_adult"), response = outcome)
-    lm(f, data=treatment_sample, weights = phrf)
+    lm(f, data=trimmed_sample, weights = phrf)
   })
 
 trimmed_sample <-treatment_sample %>%
@@ -73,7 +73,7 @@ trimmed_sample <-treatment_sample %>%
 attach(trimmed_sample)
 linear_interaction_rdd_no10 <- lapply(X = list("workforce", "unemployed", "hrl_wage"), FUN = function(outcome) {
     f <- reformulate(c("month_distance", "adult_dummy", "dist_x_adult", "month_distance_sq", "dist_sq_x_adult"), response = outcome)
-    lm(f, data=treatment_sample, weights = phrf)
+    lm(f, data=trimmed_sample, weights = phrf)
   })
 
 attach(treatment_sample)
@@ -103,8 +103,8 @@ linear_interaction_rdd_nonp <- lapply(X = list("workforce", "unemployed", "hrl_w
 
 # CONTROL GROUP ANALYSIS --------------------------------------------------
 
-control_sample_1014 <- filter(csample_young_data, year_group == "2010-14")
-control_sample_0509 <- filter(csample_young_data, year_group == "2005-09")
+control_sample_1014 <- filter(rdd_data, year_group == "2010-14")
+control_sample_0509 <- filter(rdd_data, year_group == "2005-09")
 
 #run parametric linear model for control group 2010-2014
 linear_interaction_rdd_control_1014 <- lapply(X = list("workforce", "unemployed", "hrl_wage"), FUN = function(outcome) {
@@ -125,4 +125,23 @@ linear_interaction_rdd_covariates_control_0509 <- lapply(X = list("workforce", "
   f <- reformulate(c("month_distance", "adult_dummy", "dist_x_adult", covariates), response = outcome)
   lm(f, data=control_sample_0509, weights = phrf)
 })
+
+
+
+# OUTPUT ------------------------------------------------------------------
+
+#parametric global
+anova_matrix <- rbind(linear_spec_anova, quadratic_spec_anova)
+stargazer(anova_matrix, title = "F-Test for R-squared", summary = F)
+
+#global employment
+stargazer(linear_interaction_rdd[[1]], linear_interaction_rdd_control_1014[[1]], linear_interaction_rdd_covariates[[1]], linear_interaction_rdd_covariates_control_1014[[1]], quadratic_interaction_rdd[[1]], quadratic_interaction_rdd_covariates[[1]], column.labels = c("linear interaction", "linear interaction control", "linear interaction covariates", "linear interaction covariates control", "quadratic interaction", "quadratic interaction covariates"))
+
+stargazer(linear_interaction_rdd[[2]], linear_interaction_rdd_control_1014[[2]], linear_interaction_rdd_covariates[[2]], linear_interaction_rdd_covariates_control_1014[[2]], quadratic_interaction_rdd[[2]], quadratic_interaction_rdd_covariates[[2]], column.labels = c("linear interaction", "linear interaction control", "linear interaction covariates", "linear interaction covariates control", "quadratic interaction", "quadratic interaction covariates"))
+
+stargazer(linear_interaction_rdd[[3]], linear_interaction_rdd_control_1014[[3]], linear_interaction_rdd_covariates[[3]], linear_interaction_rdd_covariates_control_1014[[3]], quadratic_interaction_rdd[[3]], quadratic_interaction_rdd_covariates[[3]], column.labels = c("linear interaction", "linear interaction control", "linear interaction covariates", "linear interaction covariates control", "quadratic interaction", "quadratic interaction covariates"))
+
+stargazer(linear_interaction_rdd_nonp[[1]], linear_interaction_rdd_nonp[[2]], linear_interaction_rdd_nonp[[3]])
+
+stargazer(linear_interaction_rdd_no5[[1]], linear_interaction_rdd_no10[[1]], linear_interaction_rdd_no5[[2]], linear_interaction_rdd_no10[[2]], linear_interaction_rdd_no5[[3]], linear_interaction_rdd_no10[[3]], column.labels = c("Employment excluding 10 extreme percentiles", "Employment excluding 20 extreme percentiles", "Unemployment excluding 10 extreme percentiles", "Unemployment excluding 20 extreme percentiles", "Hourly wage excluding 10 extreme percentiles", "Hourly wage excluding 20 extreme percentiles"))
 

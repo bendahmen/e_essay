@@ -19,12 +19,13 @@ rm(list=ls())
 load(file = "../Data/SOEP/gen/sample_young_data.Rda")
 
 #clean and generate values
+set.seed(41063)
 csample_young_data <- sample_young_data %>%
   #recode missing values
   mutate(across(everything(), ~ifelse(. %in% c(-1:-8), NA, .))) %>%
   mutate(
     #generate distance from 18's birthday in months
-    month_distance = ifelse(is.na(gebmonat) | is.na(pgmonth),(age-18)*12+5,(syear - gebjahr -18)*12 + (pgmonth - gebmonat - 1)),
+    month_distance = ifelse(is.na(gebmonat) | is.na(pgmonth), ifelse(age==18,NA, (age-18)*12+round(runif(n=n(),min=-6, max=5))),(syear - gebjahr -18)*12 + (pgmonth - gebmonat - 1)),
     month_distance_sq = month_distance*month_distance,
     #generate hourly wages
     hrl_wage = pglabgro/(pgvebzeit*4.35),
@@ -37,6 +38,7 @@ csample_young_data <- sample_young_data %>%
     #create dummies for being in the workforce or registered as unemployed
     workforce = ifelse(pgemplst %in% c(1, 2, 4), 1, 0),
     unemployed = ifelse(pglfs == 6, 1, 0),
+    labour_force = ifelse(pglfs %in% c(6:12), 1, 0),
     #dummy for being adult (eligible for MW)
     adult = factor(ifelse(month_distance<0,"Minor","Adult")),
     adult_dummy = ifelse(month_distance<0, 0, 1),
@@ -62,6 +64,7 @@ csample_young_data <- csample_young_data %>%
     mean_workforce = weighted.mean(workforce, w = phrf, na.rm = T),
     mean_unemployed = weighted.mean(unemployed, phrf, na.rm = T),
     mean_hrl_wage = weighted.mean(hrl_wage, phrf, na.rm = T),
+    mean_labour_force = weighted.mean(labour_force, w = phrf, na.rm = T),
     median_hrl_wage = weightedMedian(hrl_wage, w = phrf, na.rm = T),
     observations = n()
   ) %>%
@@ -71,10 +74,19 @@ csample_young_data <- csample_young_data %>%
     binned_mean_hrl_wage = weighted.mean(hrl_wage, phrf, na.rm = T),
     binned_median_hrl_wage = weightedMedian(hrl_wage, phrf, na.rm = T),
     binned_mean_workforce = weighted.mean(workforce, phrf, na.rm = T),
+    binned_mean_labour_force = weighted.mean(labour_force, phrf, na.rm = T),
     binned_mean_unemployed = weighted.mean(unemployed, phrf, na.rm = T),
     binned_obversations = n()
   ) %>%
-  ungroup()
+  ungroup() %>%
+  #cut youngest individuals from sample due to low sampling numbers
+  filter(month_distance > -21)
+
+#generate dataset for RDD analysis
+rdd_data <- csample_young_data %>% 
+  filter(
+    !year_group %in% c("1985-89", "1990-94", "1995-99", "2000-04")
+  )
 
 #generate collapsed sample by month_distance for graphs
 sample_young_md_data <- csample_young_data %>%
@@ -92,3 +104,4 @@ sample_young_md_data <- csample_young_data %>%
 #save datasets
 save(csample_young_data, file="../Data/SOEP/gen/csample_young_data.Rda")
 save(sample_young_md_data, file="../Data/SOEP/gen/sample_young_md_data.Rda")
+save(rdd_data, file="../Data/SOEP/gen/rdd_data.Rda")
