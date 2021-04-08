@@ -114,6 +114,15 @@ mdist_density_plot <- treatment_sample %>%
     geom_histogram(aes(x=month_distance, fill=adult), binwidth = 1, alpha = 0.6) +
     geom_smooth(aes(x=month_distance, y=amount, group=adult_dummy, color=adult), method="lm", formula = y ~ x + I(x^2) + I(x^3) + I(x^4))
 
+#jumps at cutoffs
+
+#school leaving degree
+sch_leaving_disc_plot <- ggplot(treatment_sample, aes(x=month_distance, y=workforce, group=adult, color=adult, weight=phrf)) +
+  geom_point(aes(y=mean_workforce), alpha=0.7) +
+  geom_smooth(method="lm") +
+  facet_wrap(~year_group, ncol=2)
+ggsave("plots/employment_linear.png")
+
 # OUTPUT ------------------------------------------------------------------
 
 

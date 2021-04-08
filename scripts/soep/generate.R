@@ -36,9 +36,9 @@ csample_young_data <- sample_young_data %>%
   ) %>%
   mutate(
     #create dummies for being in the workforce or registered as unemployed
-    workforce = ifelse(pgemplst %in% c(1, 2, 4), 1, 0),
-    unemployed = ifelse(pglfs == 6, 1, 0),
-    labour_force = ifelse(pglfs %in% c(6:12), 1, 0),
+    workforce = ifelse(pgemplst %in% c(1, 2, 4), 1, ifelse(is.na(pgemplst),NA,0)),
+    unemployed = ifelse(pglfs == 6, 1, ifelse(is.na(pglfs),NA,0)),
+    labour_force = ifelse(pglfs %in% c(6:12), 1, ifelse(is.na(pglfs),NA,0)),
     #dummy for being adult (eligible for MW)
     adult = factor(ifelse(month_distance<0,"Minor","Adult")),
     adult_dummy = ifelse(month_distance<0, 0, 1),
@@ -80,7 +80,7 @@ csample_young_data <- csample_young_data %>%
   ) %>%
   ungroup() %>%
   #cut youngest individuals from sample due to low sampling numbers
-  filter(month_distance > -21)
+  filter(month_distance > -22)
 
 #generate dataset for RDD analysis
 rdd_data <- csample_young_data %>% 
@@ -90,13 +90,13 @@ rdd_data <- csample_young_data %>%
 
 #generate collapsed sample by month_distance for graphs
 sample_young_md_data <- csample_young_data %>%
-  group_by(year_group, month_distance_bins) %>%
+  group_by(year_group, month_distance) %>%
   #calculate monthly share of working and unemployed as well as mean hourly wage
   summarise(
     mean_hrl_wage = mean(hrl_wage, na.rm = T),
     share_workforce = sum(workforce, na.rm = T)/n(),
     share_unemployed = sum(unemployed, na.rm = T)/n(),
-    n_employed = sum(workforce),
+    n_employed = sum(workforce, na.rm = T),
     observations = n()
   ) %>%
   ungroup()
