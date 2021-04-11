@@ -117,11 +117,19 @@ mdist_density_plot <- treatment_sample %>%
 #jumps at cutoffs
 
 #school leaving degree
-sch_leaving_disc_plot <- ggplot(treatment_sample, aes(x=month_distance, y=workforce, group=adult, color=adult, weight=phrf)) +
-  geom_point(aes(y=mean_workforce), alpha=0.7) +
-  geom_smooth(method="lm") +
+sch_leaving_disc_plot <- ggplot(rdd_data, aes(x=month_distance, y=degree, group=adult, color=adult, weight=phrf)) +
+  geom_point(aes(y=mean_degree), alpha=0.7) +
+  geom_smooth(method="lm", formula = y ~ x + I(x^2)) +
   facet_wrap(~year_group, ncol=2)
 ggsave("plots/employment_linear.png")
+
+#time within firm
+firm_time_disc_plot <- ggplot(rdd_data, aes(x=month_distance, y=pgerwzeit, group=adult, color=adult, weight=phrf)) +
+  geom_point(aes(y=mean_pgerwzeit), alpha=0.7) +
+  geom_smooth(method="lm", formula = y ~ x) +
+  facet_wrap(~year_group, ncol=2)
+ggsave("plots/employment_linear.png")
+
 
 # OUTPUT ------------------------------------------------------------------
 

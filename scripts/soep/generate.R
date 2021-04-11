@@ -44,7 +44,9 @@ csample_young_data <- sample_young_data %>%
     adult_dummy = ifelse(month_distance<0, 0, 1),
     #interaction bewteen adult dummy and running variable month distance
     dist_x_adult = month_distance*adult_dummy,
-    dist_sq_x_adult = month_distance_sq*adult_dummy
+    dist_sq_x_adult = month_distance_sq*adult_dummy,
+    #dummies for other vars
+    degree = ifelse(pgpsbil == 1, 1, ifelse(is.na(pgpsbil), NA,0))
   )
 
 #create breaks for binning month distance
@@ -66,6 +68,9 @@ csample_young_data <- csample_young_data %>%
     mean_hrl_wage = weighted.mean(hrl_wage, phrf, na.rm = T),
     mean_labour_force = weighted.mean(labour_force, w = phrf, na.rm = T),
     median_hrl_wage = weightedMedian(hrl_wage, w = phrf, na.rm = T),
+    mean_degree = weighted.mean(degree, w = phrf, na.rm = T),
+    mean_pgbetr = weighted.mean(pgbetr, w = phrf, na.rm = T),
+    mean_pgerwzeit = weighted.mean(pgerwzeit, w =phrf, na.rm = T),
     observations = n()
   ) %>%
   ungroup() %>%
@@ -78,14 +83,13 @@ csample_young_data <- csample_young_data %>%
     binned_mean_unemployed = weighted.mean(unemployed, phrf, na.rm = T),
     binned_obversations = n()
   ) %>%
-  ungroup() %>%
-  #cut youngest individuals from sample due to low sampling numbers
-  filter(month_distance > -22)
+  ungroup()
 
 #generate dataset for RDD analysis
 rdd_data <- csample_young_data %>% 
   filter(
-    !year_group %in% c("1985-89", "1990-94", "1995-99", "2000-04")
+    !year_group %in% c("1985-89", "1990-94", "1995-99", "2000-04"),
+    month_distance > -22
   )
 
 #generate collapsed sample by month_distance for graphs

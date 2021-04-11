@@ -32,3 +32,15 @@ covariates <- c("migback", "pgbilzeit", "pgpsbil")
 
 #McCrary Density Test
 mcd_test <- DCdensity(treatment_sample$month_distance, bin=1)
+
+#non-outcome discontinuities
+#run parametric quadratic model
+quadratic_nonoutcome_rdd <- lapply(X = list("degree"), FUN = function(outcome) {
+  f <- reformulate(c("month_distance", "adult_dummy", "dist_x_adult", "month_distance_sq", "dist_sq_x_adult"), response = outcome)
+  plm(f, data=treatment_sample, weights = phrf, model = "pooling")
+})
+
+linear_nonoutcome_rdd <- lapply(X = list("pgerwzeit"), FUN = function(outcome) {
+  f <- reformulate(c("month_distance", "adult_dummy", "dist_x_adult"), response = outcome)
+  plm(f, data=treatment_sample, weights = phrf, model = "pooling")
+})
