@@ -35,7 +35,7 @@ csample_young_data <- sample_young_data %>%
     month_distance > -26
   ) %>%
   mutate(
-    #create dummies for being in the workforce or registered as unemployed
+    #create dummies for binary outcomes
     workforce = ifelse(pgemplst %in% c(1, 2, 4), 1, ifelse(is.na(pgemplst),NA,0)),
     unemployed = ifelse(pglfs == 6, 1, ifelse(is.na(pglfs),NA,0)),
     labour_force = ifelse(pglfs %in% c(6:12), 1, ifelse(is.na(pglfs),NA,0)),
@@ -71,6 +71,8 @@ csample_young_data <- csample_young_data %>%
     mean_degree = weighted.mean(degree, w = phrf, na.rm = T),
     mean_pgbetr = weighted.mean(pgbetr, w = phrf, na.rm = T),
     mean_pgerwzeit = weighted.mean(pgerwzeit, w =phrf, na.rm = T),
+    mean_pgvebzeit = weighted.mean(pgvebzeit, w = phrf, na.rm = T),
+    mean_pgtatzeit = weighted.mean(pgtatzeit, w = phrf, na.rm = T),
     observations = n()
   ) %>%
   ungroup() %>%
@@ -81,6 +83,8 @@ csample_young_data <- csample_young_data %>%
     binned_mean_workforce = weighted.mean(workforce, phrf, na.rm = T),
     binned_mean_labour_force = weighted.mean(labour_force, phrf, na.rm = T),
     binned_mean_unemployed = weighted.mean(unemployed, phrf, na.rm = T),
+    binned_mean_pgvebzeit = weighted.mean(pgvebzeit, phrf, na.rm = T),
+    binned_mean_pgtatzeit = weighted.mean(pgtatzeit, phrf, na.rm = T),
     binned_obversations = n()
   ) %>%
   ungroup()

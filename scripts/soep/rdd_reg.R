@@ -25,7 +25,7 @@ treatment_sample <- filter(rdd_data, year_group == "2015+ Treatment")
 attach(treatment_sample)
 
 #covariates
-outcomes <- c("workforce", "unemployed", "hrl_wage")
+outcomes <- c("workforce", "unemployed", "hrl_wage", "labour_force")
 covariate_s <- " + migback + pgbilzeit + pgpsbil"
 
 

@@ -23,85 +23,65 @@ load(file = "../Data/SOEP/gen/sample_young_md_data.Rda")
 treatment_sample <- rdd_data %>%
   filter(year_group == "2015+ Treatment")
 
+binary_outcomes <- list("workforce", "unemployed", "labour_force")
+cont_outcomes <- list("hrl_wage", "pgvebzeit", "pgtatzeit")
 
 # RDD fitted scatter plots ------------------------------------------------
 
 
-#define basic plot
-b_plot <- ggplot(treatment_sample, aes(x=month_distance, weight=phrf, group=adult, color=adult))
+#define basic plots
+plot_x_month_wgc_wrap <- ggplot(rdd_data, aes(x=month_distance, weight=phrf, group=adult, color=adult)) + facet_wrap(~year_group, ncol = 2)
+
+plot_x_monthbins_wgc_wrap <- ggplot(rdd_data, aes(x=month_distance_bins, weight=phrf, group=adult, color=adult)) + facet_wrap(~year_group, ncol = 2)
 
 #scatter plot of all observations binary data
-binary_outcomes <- list("workforce", "unemployed")
-binary_scatter_plots <- lapply(X = binary_outcomes, FUN = function(vars) { ggplot(rdd_data, aes(x=month_distance, weight=phrf, group=adult, color=adult)) + geom_point(aes_(y=as.name(paste("mean_",vars, sep="")))) + facet_wrap(~year_group, ncol = 2) } )
-ggsave(plot=binary_scatter_plots[[1]], "plots/scatter_emp.png")
-ggsave(plot=binary_scatter_plots[[2]], "plots/scatter_unemp.png")
-
+binary_scatter_plots <- lapply(X = binary_outcomes, FUN = function(vars) { plot_x_month_wgc_wrap + geom_point(aes_(y=as.name(paste("mean_",vars, sep="")))) } )
 
 #binned scatter plot binary data
-binned_emp_scatter_plot <- ggplot(rdd_data, aes(x=month_distance_bins, weight=phrf, group=adult, color=adult)) +
-  geom_point(aes(y=binned_mean_workforce, size=binned_obversations)) + facet_wrap(~year_group, ncol = 2)
-ggsave("plots/binned_emp_scatter.png")
-
-binned_unemp_scatter_plot <- ggplot(rdd_data, aes(x=month_distance_bins, weight=phrf, group=adult, color=adult)) +
-  geom_point(aes(y=binned_mean_unemployed, size=binned_obversations)) + facet_wrap(~year_group, ncol = 2)
-ggsave("plots/binned_unemp_scatter.png")
+binary_binned_scatter_plots <- lapply(X = binary_outcomes, FUN = function(vars) { plot_x_monthbins_wgc_wrap + geom_point(aes_(y=as.name(paste("binned_mean_",vars, sep="")), size = as.name("binned_obversations"))) } )
 
 #scatter plot of all observations cont data
-hrl_wage_scatter_plot <- ggplot(rdd_data, aes(x=month_distance, weight=phrf, group=adult, color=adult)) + 
-  geom_point(aes(y=hrl_wage)) + facet_wrap(~year_group, ncol = 2) + ylim(0,40)
-ggsave("plots/scatter_hrl_wage.png")
+cont_scatter_plots <- lapply(X = cont_outcomes, FUN = function(vars) { plot_x_month_wgc_wrap + geom_point(aes_(y=as.name(vars))) } )
 
 #binned scatter plot hrl_wage
-binned_hrl_wage_scatter_plot <- ggplot(rdd_data, aes(x=month_distance_bins, weight=phrf, group=adult, color=adult)) +
-  geom_point(aes(y=binned_median_hrl_wage, size=binned_obversations)) + expand_limits(y=0) + facet_wrap(~year_group, ncol = 2)
-ggsave("plots/binned_hrl_wage_scatter.png")
+cont_binned_scatter_plots <- lapply(X = cont_outcomes, FUN = function(vars) { plot_x_monthbins_wgc_wrap + 
+    geom_point(aes_(y=as.name(paste("binned_median_",vars, sep="")), size = as.name("binned_obversations"))) +
+    expand_limits(y=0)
+    } )
+
 #smaller bins
-sbinned_hrl_wage_scatter_plot <- ggplot(rdd_data, aes(x=month_distance, weight=phrf, group=adult, color=adult)) +
-  geom_point(aes(y=median_hrl_wage, size=observations)) + expand_limits(y=0) + facet_wrap(~year_group, ncol = 2)
-ggsave("plots/sbinned_hrl_wage_scatter.png")
+cont_binned_scatter_plots <- lapply(X = cont_outcomes, FUN = function(vars) { plot_x_month_wgc_wrap + 
+    geom_point(aes_(y=as.name(paste("mean_",vars, sep="")), size = as.name("binned_obversations"))) +
+    expand_limits(y=0)
+    } )
 
-#plot employment share
-employment_scatter_linear_plot <- ggplot(rdd_data, aes(x=month_distance, y=workforce, group=adult, color=adult, weight=phrf)) +
-  geom_point(aes(y=mean_workforce), alpha=0.7) +
-  geom_smooth(method="lm") +
-  facet_wrap(~year_group, ncol=2)
-ggsave("plots/employment_linear.png")
-employment_scatter_quadratic_plot <- ggplot(rdd_data, aes(x=month_distance, y=workforce, group=adult, color=adult, weight=phrf)) +
-  geom_point(aes(y=mean_workforce), alpha=0.7) +
-  geom_smooth(method="lm", formula = y ~ x + I(x^2)) +
-  facet_wrap(~year_group, ncol=2)
-ggsave("plots/employment_quadratic.png")
+#plot binary fitted plots
+binary_linear_scatter_plots <- lapply(X = binary_outcomes, FUN = function(vars) { plot_x_month_wgc_wrap + 
+    geom_point(aes_(y=as.name(paste("mean_",vars, sep=""))), alpha = 0.7) +
+    geom_smooth(aes_(y=as.name(vars)), method = "lm")
+    } )
 
-#plot unemployment share
-unemployment_scatter_linear_plot <- ggplot(rdd_data, aes(x=month_distance, y=unemployed, group=adult, color=adult, weight=phrf)) +
-  geom_point(aes(y=mean_unemployed), alpha=0.7) +
-  geom_smooth(method="lm") +
-  facet_wrap(~year_group, ncol=2)
-ggsave("plots/unemp_linear.png")
-unemployment_scatter_quadratic_plot <- ggplot(rdd_data, aes(x=month_distance, y=unemployed, group=adult, color=adult, weight=phrf)) +
-  geom_point(aes(y=mean_unemployed), alpha=0.7) +
-  geom_smooth(method="lm", formula = y ~ x + I(x^2)) +
-  facet_wrap(~year_group, ncol=2)
-ggsave("plots/unemp_quadratic.png")
+binary_quadratic_scatter_plots <- lapply(X = binary_outcomes, FUN = function(vars) { plot_x_month_wgc_wrap + 
+    geom_point(aes_(y=as.name(paste("mean_",vars, sep=""))), alpha = 0.7) +
+    geom_smooth(aes_(y=as.name(vars)), method = "lm", formula = y ~ x + I(x^2))
+    } )
 
-#plot hourly wages
-plot_data <- rdd_data %>%
-  group_by(month_distance_bins) %>%
-  filter(!duplicated(binned_mean_hrl_wage))
-hrl_wage_scatter_linear_plot <- ggplot(rdd_data, aes(x=month_distance, y=hrl_wage, group=adult, color=adult, weight=phrf)) +
-  geom_point(data=plot_data, aes(x=month_distance, y=binned_mean_hrl_wage), alpha=0.6) +
-  geom_smooth(method="lm") +
-  ylim(0,15) +
-  facet_wrap(~year_group, ncol=2)
-ggsave("plots/hrl_wage_linear.png")
-hrl_wage_scatter_quadratic_plot <- ggplot(rdd_data, aes(x=month_distance, y=hrl_wage, group=adult, color=adult, weight=phrf)) +
-  geom_point(data=plot_data, aes(x=month_distance, y=binned_mean_hrl_wage), alpha=0.6) +
-  geom_smooth(method="lm", formula = y ~ x + I(x^2)) +
-  ylim(0,15) +
-  facet_wrap(~year_group, ncol=2)
-ggsave("plots/hrl_wage_quadratic.png")
+#plot cont fitted plots
+cont_linear_scatter_plots <- lapply(X = cont_outcomes, FUN = function(vars) { plot_x_month_wgc_wrap + 
+    geom_point(
+      data = rdd_data,
+      aes_(y=as.name(paste("mean_",vars, sep=""))), alpha = 0.6) +
+    geom_smooth(data = filter(rdd_data, hrl_wage<200), aes_(y=as.name(vars)), method = "lm")
+    } )
 
-
+cont_quadratic_scatter_plots <- lapply(X = cont_outcomes, FUN = function(vars) { plot_x_month_wgc_wrap + 
+    geom_point(
+      data = rdd_data %>%
+        group_by(month_distance_bins) %>%
+        filter(!duplicated(binned_mean_hrl_wage)),
+      aes_(y=as.name(paste("binned_mean_",vars, sep=""))), alpha = 0.6) +
+    geom_smooth(data = filter(rdd_data, hrl_wage<200), aes_(y=as.name(vars)), method = "lm", formula = y ~ x + I(x^2))
+} )
 
 
 # RDD robustness plots ----------------------------------------------------
@@ -117,18 +97,14 @@ mdist_density_plot <- treatment_sample %>%
 #jumps at cutoffs
 
 #school leaving degree
-sch_leaving_disc_plot <- ggplot(rdd_data, aes(x=month_distance, y=degree, group=adult, color=adult, weight=phrf)) +
+sch_leaving_disc_plot <- plot_x_month_wgc_wrap +
   geom_point(aes(y=mean_degree), alpha=0.7) +
-  geom_smooth(method="lm", formula = y ~ x + I(x^2)) +
-  facet_wrap(~year_group, ncol=2)
-ggsave("plots/employment_linear.png")
+  geom_smooth(aes(y = degree), method="lm", formula = y ~ x + I(x^2))
 
 #time within firm
-firm_time_disc_plot <- ggplot(rdd_data, aes(x=month_distance, y=pgerwzeit, group=adult, color=adult, weight=phrf)) +
+firm_time_disc_plot <- plot_x_month_wgc_wrap +
   geom_point(aes(y=mean_pgerwzeit), alpha=0.7) +
-  geom_smooth(method="lm", formula = y ~ x) +
-  facet_wrap(~year_group, ncol=2)
-ggsave("plots/employment_linear.png")
+  geom_smooth(aes(y = degree), method="lm", formula = y ~ x)
 
 
 # OUTPUT ------------------------------------------------------------------
