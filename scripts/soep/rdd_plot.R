@@ -69,7 +69,9 @@ binary_quadratic_scatter_plots <- lapply(X = binary_outcomes, FUN = function(var
 #plot cont fitted plots
 cont_linear_scatter_plots <- lapply(X = cont_outcomes, FUN = function(vars) { plot_x_month_wgc_wrap + 
     geom_point(
-      data = rdd_data,
+      data = rdd_data %>%
+        group_by(month_distance_bins) %>%
+        filter(!duplicated(binned_mean_hrl_wage)),
       aes_(y=as.name(paste("mean_",vars, sep=""))), alpha = 0.6) +
     geom_smooth(data = filter(rdd_data, hrl_wage<200), aes_(y=as.name(vars)), method = "lm")
     } )
