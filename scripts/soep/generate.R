@@ -38,7 +38,7 @@ csample_young_data <- sample_young_data %>%
     #create dummies for binary outcomes
     workforce = ifelse(pgemplst %in% c(1, 2, 4), 1, ifelse(is.na(pgemplst),NA,0)),
     unemployed = ifelse(pglfs == 6, 1, ifelse(is.na(pglfs),NA,0)),
-    labour_force = ifelse(pglfs %in% c(6:12), 1, ifelse(is.na(pglfs),NA,0)),
+    labour_force = ifelse(pglfs %in% c(6:12), 1, 0), #ifelse(is.na(pglfs),NA,0)
     #dummy for being adult (eligible for MW)
     adult = factor(ifelse(month_distance<0,"Minor","Adult")),
     adult_dummy = ifelse(month_distance<0, 0, 1),
@@ -96,23 +96,59 @@ rdd_data <- csample_young_data %>%
 
 #generate bins and (binned) means for DID
 did_data <- csample_young_data %>%
+  filter(
+    syear >= 2005 #2010
+  ) %>%
   mutate(
-    age_bins = cut(csample_young_data$age, c(0,17,23,30), labels = c("<18", "18-23", "24+"))
+    #basic dif-in-dif factors and interactions
+    syear_num = as.numeric(syear),
+    year_fac = as.factor(syear),
+    treatment_group = ifelse(syear >= 2015, 1,0),
+    age_fac = as.factor(age),
+    age_sq = age*age,
+    treatment_interaction = ifelse(age >= 18 & syear_num >= 2015, 1,0)
+  ) %>%
+  mutate(
+    #create age and year bins
+    age_bins = cut(age, c(0,17,23,27,30), labels = c("<18", "18-23", "24-27", "28+")),
+    year_bins = cut(syear, c(2000, 2012, 2014, 2016, 2019)) #labels = c("2000-04", "2005-09", "2010-14", "2015+ - Treatment")
+  ) %>%
+  #create interactions for group analysis
+  mutate(
+    treatment_x_1823 = ifelse(treatment_group == 1 & age_bins == "18-23",1,0),
+    treatment_x_2427 = ifelse(treatment_group == 1 & age_bins == "24-27",1,0),
+    treatment_x_28 = ifelse(treatment_group == 1 & age_bins == "28+",1,0)
   ) %>%
   group_by(syear, age_bins) %>%
   mutate(
-    mean_workforce = weighted.mean(workforce, w = phrf, na.rm = T),
-    mean_unemployed = weighted.mean(unemployed, phrf, na.rm = T),
-    mean_hrl_wage = weighted.mean(hrl_wage, phrf, na.rm = T),
-    mean_labour_force = weighted.mean(labour_force, w = phrf, na.rm = T),
-    median_hrl_wage = weightedMedian(hrl_wage, w = phrf, na.rm = T),
-    mean_degree = weighted.mean(degree, w = phrf, na.rm = T),
-    mean_pgbetr = weighted.mean(pgbetr, w = phrf, na.rm = T),
-    mean_pgerwzeit = weighted.mean(pgerwzeit, w =phrf, na.rm = T),
-    mean_pgvebzeit = weighted.mean(pgvebzeit, w = phrf, na.rm = T),
-    mean_pgtatzeit = weighted.mean(pgtatzeit, w = phrf, na.rm = T),
-    observations = n()
-  )
+    agebin_mean_workforce = weighted.mean(workforce, w = phrf, na.rm = T),
+    agebin_mean_unemployed = weighted.mean(unemployed, phrf, na.rm = T),
+    agebin_mean_hrl_wage = weighted.mean(hrl_wage, phrf, na.rm = T),
+    agebin_mean_labour_force = weighted.mean(labour_force, w = phrf, na.rm = T),
+    agebin_median_hrl_wage = weightedMedian(hrl_wage, w = phrf, na.rm = T),
+    agebin_mean_degree = weighted.mean(degree, w = phrf, na.rm = T),
+    agebin_mean_pgbetr = weighted.mean(pgbetr, w = phrf, na.rm = T),
+    agebin_mean_pgerwzeit = weighted.mean(pgerwzeit, w =phrf, na.rm = T),
+    agebin_mean_pgvebzeit = weighted.mean(pgvebzeit, w = phrf, na.rm = T),
+    agebin_mean_pgtatzeit = weighted.mean(pgtatzeit, w = phrf, na.rm = T),
+    agebin_observations = n()
+  ) %>%
+  ungroup() %>%
+  group_by(age, year_bins) %>%
+  mutate(
+    yearbin_mean_workforce = weighted.mean(workforce, w = phrf, na.rm = T),
+    yearbin_mean_unemployed = weighted.mean(unemployed, phrf, na.rm = T),
+    yearbin_mean_hrl_wage = weighted.mean(hrl_wage, phrf, na.rm = T),
+    yearbin_mean_labour_force = weighted.mean(labour_force, w = phrf, na.rm = T),
+    yearbin_median_hrl_wage = weightedMedian(hrl_wage, w = phrf, na.rm = T),
+    yearbin_mean_degree = weighted.mean(degree, w = phrf, na.rm = T),
+    yearbin_mean_pgbetr = weighted.mean(pgbetr, w = phrf, na.rm = T),
+    yearbin_mean_pgerwzeit = weighted.mean(pgerwzeit, w =phrf, na.rm = T),
+    yearbin_mean_pgvebzeit = weighted.mean(pgvebzeit, w = phrf, na.rm = T),
+    yearbin_mean_pgtatzeit = weighted.mean(pgtatzeit, w = phrf, na.rm = T),
+    yearbin_observations = n()
+  ) %>%
+  ungroup()
 
 # #generate collapsed sample by month_distance for graphs
 # sample_young_md_data <- csample_young_data %>%
