@@ -1,0 +1,19 @@
+[0] Config.pm:304> INFO - This is Biber 2.14
+[1] Config.pm:307> INFO - Logfile is 'Extended Essay - Benjamin Dahmen.blg'
+[183] biber-MSWIN64:322> INFO - === 
+[226] Biber.pm:415> INFO - Reading 'Extended Essay - Benjamin Dahmen.bcf'
+[445] Biber.pm:943> INFO - Found 1 citekeys in bib section 0
+[482] Biber.pm:4256> INFO - Processing section 0
+[483] Utils.pm:75> INFO - Globbing data source '../../../../../Hobbys-BenDahmen-PC/LaTeX/Libraries/Extended_Essay_LSE.bib'
+[498] Utils.pm:91> INFO - Globbed data source '../../../../../Hobbys-BenDahmen-PC/LaTeX/Libraries/Extended_Essay_LSE.bib' to ../../../../../Hobbys-BenDahmen-PC/LaTeX/Libraries/Extended_Essay_LSE.bib
+[522] Biber.pm:4455> INFO - Looking for bibtex format file '../../../../../Hobbys-BenDahmen-PC/LaTeX/Libraries/Extended_Essay_LSE.bib' for section 0
+[558] bibtex.pm:1653> INFO - LaTeX decoding ...
+[651] bibtex.pm:1471> INFO - Found BibTeX data source '../../../../../Hobbys-BenDahmen-PC/LaTeX/Libraries/Extended_Essay_LSE.bib'
+[698] Utils.pm:304> WARN - BibTeX subsystem: C:\Users\benda\AppData\Local\Temp\biber_tmp_OXWT\Extended_Essay_LSE.bib_10032.utf8, line 6, warning: 172 characters of junk seen at toplevel
+[713] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[713] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[713] Biber.pm:4084> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[713] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
+[726] bbl.pm:652> INFO - Writing 'Extended Essay - Benjamin Dahmen.bbl' with encoding 'UTF-8'
+[727] bbl.pm:755> INFO - Output to Extended Essay - Benjamin Dahmen.bbl
+[728] Biber.pm:128> INFO - WARNINGS: 1

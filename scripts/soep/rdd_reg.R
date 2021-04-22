@@ -6,15 +6,8 @@
 
 # SET UP ------------------------------------------------------------------
 
-#PACKAGES
-installation_needed  <- F
-loading_needed <- T
-package_list <- c("haven", "tidyverse", "rdrobust", "rdd", "plm", "stargazer")
-if(installation_needed){install.packages(package_list, repos='http://cran.us.r-project.org')}
-if(loading_needed){lapply(package_list, require, character.only = T)}
+source("scripts/soep/head.R")
 
-#clear workspace
-rm(list=ls()) 
 #SET WD in console
 
 #load data
@@ -22,10 +15,11 @@ load(file = "../Data/SOEP/gen/rdd_data.Rda")
 
 #filter data
 treatment_sample <- filter(rdd_data, year_group == "2015+ Treatment")
+treatment_sample <- pdata.frame(treatment_sample, index = c("pid", "syear"))
 attach(treatment_sample)
 
 #covariates
-outcomes <- c("workforce", "unemployed", "hrl_wage", "labour_force")
+outcomes <- c("workforce", "unemployed", "hrl_wage", "labour_force", "pglabgro")
 covariate_s <- " + migback + pgbilzeit + pgpsbil"
 
 
@@ -40,7 +34,9 @@ rdd_regression <- function(outcome, data, quadratic = F, covariates = F) {
     s_formula <- paste(s_formula, covariate_s, sep = "")
   }
   formula <- as.formula(s_formula)
-  plm(data = data, formula = formula, weights = phrf, model = "pooling")
+  reg <- lm(data = data, formula = formula, weights = phrf)
+  rob <- coeftest(reg, vcov=vcovHC(reg))
+  output <- list(reg, rob)
 }
 
 # GLOBAL PARAMETRIC MODEL -------------------------------------------------
@@ -126,4 +122,6 @@ linear_interaction_rdd_covariates_control_0509 <- lapply(X = outcomes, FUN = rdd
 # stargazer(linear_interaction_rdd_nonp[[1]], linear_interaction_rdd_nonp[[2]], linear_interaction_rdd_nonp[[3]])
 # 
 # stargazer(linear_interaction_rdd_no5[[1]], linear_interaction_rdd_no10[[1]], linear_interaction_rdd_no5[[2]], linear_interaction_rdd_no10[[2]], linear_interaction_rdd_no5[[3]], linear_interaction_rdd_no10[[3]], column.labels = c("Employment excluding 10 extreme percentiles", "Employment excluding 20 extreme percentiles", "Unemployment excluding 10 extreme percentiles", "Unemployment excluding 20 extreme percentiles", "Hourly wage excluding 10 extreme percentiles", "Hourly wage excluding 20 extreme percentiles"))
+
+
 

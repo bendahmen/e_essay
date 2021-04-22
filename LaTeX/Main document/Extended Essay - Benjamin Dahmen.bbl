@@ -1,0 +1,55 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global}
+    \entry{ILO_MW}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=fbfe2ab33434313f5468213d93196d5c}{%
+           family={ILO},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{fbfe2ab33434313f5468213d93196d5c}
+      \strng{fullhash}{fbfe2ab33434313f5468213d93196d5c}
+      \strng{bibnamehash}{fbfe2ab33434313f5468213d93196d5c}
+      \strng{authorbibnamehash}{fbfe2ab33434313f5468213d93196d5c}
+      \strng{authornamehash}{fbfe2ab33434313f5468213d93196d5c}
+      \strng{authorfullhash}{fbfe2ab33434313f5468213d93196d5c}
+      \field{sortinit}{I}
+      \field{sortinithash}{9417e9a1288a9371e2691d999083ed39}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{url}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{Chapter 1 - What is a minimum wage: 1.2. How many countries have a minimum wage?}}
+      \field{urlday}{21}
+      \field{urlmonth}{4}
+      \field{urlyear}{2021}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb http://www.ilo.org/global/topics/wages/minimum-wages/definition/WCMS{\_}439073/lang--en/index.htm
+      \endverb
+      \verb{url}
+      \verb http://www.ilo.org/global/topics/wages/minimum-wages/definition/WCMS%7B%5C_%7D439073/lang--en/index.htm
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

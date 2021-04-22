@@ -5,12 +5,7 @@
 #The aim of this script is to assemble the data set needed for preliminary analysis
 #WARNING: Scripts runs very long due to replacing missing values in line 62
 
-#PACKAGES
-installation_needed  <- F
-loading_needed <- T
-package_list <- c('haven', "tidyr", "dplyr")
-if(installation_needed){install.packages(package_list, repos='http://cran.us.r-project.org')}
-if(loading_needed){lapply(package_list, require, character.only = T)}
+source("scripts/soep/head.R")
 
 #clear workspace
 rm(list=ls()) 

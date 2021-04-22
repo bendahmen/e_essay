@@ -4,15 +4,8 @@
 
 #The aim of this script is to clean the data and generate additional variables needed in the different stages of analysis
 
-#PACKAGES
-installation_needed  <- F
-loading_needed <- T
-package_list <- c("haven", "tidyverse", "matrixStats")
-if(installation_needed){install.packages(package_list, repos='http://cran.us.r-project.org')}
-if(loading_needed){lapply(package_list, require, character.only = T)}
+source("scripts/soep/head.R")
 
-#clear workspace
-rm(list=ls()) 
 #SET WD in console
 
 #load data
@@ -38,7 +31,7 @@ csample_young_data <- sample_young_data %>%
     #create dummies for binary outcomes
     workforce = ifelse(pgemplst %in% c(1, 2, 4), 1, ifelse(is.na(pgemplst),NA,0)),
     unemployed = ifelse(pglfs == 6, 1, ifelse(is.na(pglfs),NA,0)),
-    labour_force = ifelse(pglfs %in% c(6:12), 1, 0), #ifelse(is.na(pglfs),NA,0)
+    labour_force = ifelse(pglfs %in% c(6:12), 1, ifelse(is.na(pglfs),NA,0)), #ifelse(is.na(pglfs),NA,0)
     #dummy for being adult (eligible for MW)
     adult = factor(ifelse(month_distance<0,"Minor","Adult")),
     adult_dummy = ifelse(month_distance<0, 0, 1),
@@ -66,6 +59,7 @@ rdd_data <- csample_young_data %>%
     mean_workforce = weighted.mean(workforce, w = phrf, na.rm = T),
     mean_unemployed = weighted.mean(unemployed, phrf, na.rm = T),
     mean_hrl_wage = weighted.mean(hrl_wage, phrf, na.rm = T),
+    mean_pglabgro = weighted.mean(pglabgro, phrf, na.rm = T),
     mean_labour_force = weighted.mean(labour_force, w = phrf, na.rm = T),
     median_hrl_wage = weightedMedian(hrl_wage, w = phrf, na.rm = T),
     mean_degree = weighted.mean(degree, w = phrf, na.rm = T),
@@ -80,6 +74,7 @@ rdd_data <- csample_young_data %>%
   mutate(
     binned_mean_hrl_wage = weighted.mean(hrl_wage, phrf, na.rm = T),
     binned_median_hrl_wage = weightedMedian(hrl_wage, phrf, na.rm = T),
+    binned_mean_pglabgro = weighted.mean(pglabgro, phrf, na.rm = T),
     binned_mean_workforce = weighted.mean(workforce, phrf, na.rm = T),
     binned_mean_labour_force = weighted.mean(labour_force, phrf, na.rm = T),
     binned_mean_unemployed = weighted.mean(unemployed, phrf, na.rm = T),
@@ -97,7 +92,7 @@ rdd_data <- csample_young_data %>%
 #generate bins and (binned) means for DID
 did_data <- csample_young_data %>%
   filter(
-    syear >= 2005 #2010
+    syear > 2005 #2010
   ) %>%
   mutate(
     #basic dif-in-dif factors and interactions
@@ -110,14 +105,14 @@ did_data <- csample_young_data %>%
   ) %>%
   mutate(
     #create age and year bins
-    age_bins = cut(age, c(0,17,23,27,30), labels = c("<18", "18-23", "24-27", "28+")),
+    age_bins = cut(age, c(0,17,23,26,30), labels = c("<18", "18-23", "24-26", "27-29")),
     year_bins = cut(syear, c(2000, 2012, 2014, 2016, 2019)) #labels = c("2000-04", "2005-09", "2010-14", "2015+ - Treatment")
   ) %>%
   #create interactions for group analysis
   mutate(
     treatment_x_1823 = ifelse(treatment_group == 1 & age_bins == "18-23",1,0),
-    treatment_x_2427 = ifelse(treatment_group == 1 & age_bins == "24-27",1,0),
-    treatment_x_28 = ifelse(treatment_group == 1 & age_bins == "28+",1,0)
+    treatment_x_2427 = ifelse(treatment_group == 1 & age_bins == "24-26",1,0),
+    treatment_x_28 = ifelse(treatment_group == 1 & age_bins == "27-29",1,0)
   ) %>%
   group_by(syear, age_bins) %>%
   mutate(

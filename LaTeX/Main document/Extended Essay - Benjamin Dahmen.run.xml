@@ -41,13 +41,13 @@
   >
 ]>
 <requests version="1.0">
-  <internal package="biblatex" priority="9" active="0">
+  <internal package="biblatex" priority="9" active="1">
     <generic>latex</generic>
     <provides type="dynamic">
-      <file>Proposal_main.bcf</file>
+      <file>"Extended Essay - Benjamin Dahmen".bcf</file>
     </provides>
     <requires type="dynamic">
-      <file>Proposal_main.bbl</file>
+      <file>"Extended Essay - Benjamin Dahmen".bbl</file>
     </requires>
     <requires type="static">
       <file>blx-dm.def</file>
@@ -64,22 +64,22 @@
     <generic>biber</generic>
     <cmdline>
       <binary>biber</binary>
-      <infile>Proposal_main</infile>
+      <infile>"Extended Essay - Benjamin Dahmen"</infile>
     </cmdline>
     <input>
-      <file>Proposal_main.bcf</file>
+      <file>"Extended Essay - Benjamin Dahmen".bcf</file>
     </input>
     <output>
-      <file>Proposal_main.bbl</file>
+      <file>"Extended Essay - Benjamin Dahmen".bbl</file>
     </output>
     <provides type="dynamic">
-      <file>Proposal_main.bbl</file>
+      <file>"Extended Essay - Benjamin Dahmen".bbl</file>
     </provides>
     <requires type="dynamic">
-      <file>Proposal_main.bcf</file>
+      <file>"Extended Essay - Benjamin Dahmen".bcf</file>
     </requires>
     <requires type="editable">
-      <file>"C:/Users/benda/OneDrive/Documents/Hobbys-BenDahmen-PC/LaTeX/Libraries/Extended_Essay_LSE.bib"</file>
+      <file>../../../../../Hobbys-BenDahmen-PC/LaTeX/Libraries/Extended_Essay_LSE.bib</file>
     </requires>
   </external>
 </requests>

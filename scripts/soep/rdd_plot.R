@@ -4,15 +4,8 @@
 
 #The aim of this script is to create plots for the regression discontinuity design analysis
 
-#PACKAGES
-installation_needed  <- F
-loading_needed <- T
-package_list <- c("haven", "tidyverse")
-if(installation_needed){install.packages(package_list, repos='http://cran.us.r-project.org')}
-if(loading_needed){lapply(package_list, require, character.only = T)}
+source("scripts/soep/head.R")
 
-#clear workspace
-rm(list=ls()) 
 #SET WD in console
 
 #load data
@@ -24,15 +17,15 @@ treatment_sample <- rdd_data %>%
   filter(year_group == "2015+ Treatment")
 
 binary_outcomes <- list("workforce", "unemployed", "labour_force")
-cont_outcomes <- list("hrl_wage", "pgvebzeit", "pgtatzeit")
+cont_outcomes <- list("hrl_wage", "pgvebzeit", "pgtatzeit", "pglabgro")
 
 # RDD fitted scatter plots ------------------------------------------------
 
 
 #define basic plots
-plot_x_month_wgc_wrap <- ggplot(rdd_data, aes(x=month_distance, weight=phrf, group=adult, color=adult)) + facet_wrap(~year_group, ncol = 2)
+plot_x_month_wgc_wrap <- ggplot(rdd_data, aes(x=month_distance, weight=phrf, group=adult, color=adult)) + facet_wrap(~year_group, ncol = 3)
 
-plot_x_monthbins_wgc_wrap <- ggplot(rdd_data, aes(x=month_distance_bins, weight=phrf, group=adult, color=adult)) + facet_wrap(~year_group, ncol = 2)
+plot_x_monthbins_wgc_wrap <- ggplot(rdd_data, aes(x=month_distance_bins, weight=phrf, group=adult, color=adult)) + facet_wrap(~year_group, ncol = 3)
 
 #scatter plot of all observations binary data
 binary_scatter_plots <- lapply(X = binary_outcomes, FUN = function(vars) { plot_x_month_wgc_wrap + geom_point(aes_(y=as.name(paste("mean_",vars, sep="")))) } )
@@ -50,7 +43,7 @@ cont_binned_scatter_plots <- lapply(X = cont_outcomes, FUN = function(vars) { pl
     } )
 
 #smaller bins
-cont_binned_scatter_plots <- lapply(X = cont_outcomes, FUN = function(vars) { plot_x_month_wgc_wrap + 
+cont_sbinned_scatter_plots <- lapply(X = cont_outcomes, FUN = function(vars) { plot_x_month_wgc_wrap + 
     geom_point(aes_(y=as.name(paste("mean_",vars, sep="")), size = as.name("binned_obversations"))) +
     expand_limits(y=0)
     } )
@@ -69,11 +62,9 @@ binary_quadratic_scatter_plots <- lapply(X = binary_outcomes, FUN = function(var
 #plot cont fitted plots
 cont_linear_scatter_plots <- lapply(X = cont_outcomes, FUN = function(vars) { plot_x_month_wgc_wrap + 
     geom_point(
-      data = rdd_data %>%
-        group_by(month_distance_bins) %>%
-        filter(!duplicated(binned_mean_hrl_wage)),
+      data = rdd_data,
       aes_(y=as.name(paste("mean_",vars, sep=""))), alpha = 0.6) +
-    geom_smooth(data = filter(rdd_data, hrl_wage<200), aes_(y=as.name(vars)), method = "lm")
+    geom_smooth(data = rdd_data, aes_(y=as.name(vars)), method = "lm") # filter(rdd_data, hrl_wage<200)
     } )
 
 cont_quadratic_scatter_plots <- lapply(X = cont_outcomes, FUN = function(vars) { plot_x_month_wgc_wrap + 
@@ -106,9 +97,9 @@ sch_leaving_disc_plot <- plot_x_month_wgc_wrap +
 #time within firm
 firm_time_disc_plot <- plot_x_month_wgc_wrap +
   geom_point(aes(y=mean_pgerwzeit), alpha=0.7) +
-  geom_smooth(aes(y = degree), method="lm", formula = y ~ x)
+  geom_smooth(aes(y = pgerwzeit), method="lm", formula = y ~ x + I(x^2))
 
 
 # OUTPUT ------------------------------------------------------------------
 
-
+       
